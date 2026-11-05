@@ -3,6 +3,7 @@ name: Pytest Login Auto Test
 on:
   push:
     branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -27,7 +28,9 @@ jobs:
           allure_version: 2.24.0
 
       - name: 执行pytest自动化
-        run: pytest
+        run: |
+          export PYTHONPATH=$PWD
+          pytest testcases/ --allure-dir=allure-results
 
       - name: 生成Allure报告
         run: allure generate ./allure-results -o ./allure-report --clean
