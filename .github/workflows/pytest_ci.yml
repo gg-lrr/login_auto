@@ -22,22 +22,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: apt安装 allure
-        run: |
-          sudo apt update
-          sudo apt install -y allure
-
       - name: 执行pytest自动化
         run: |
           export PYTHONPATH=$PWD
           pytest testcases/ --alluredir=allure-results
 
-      - name: 生成Allure报告
-        run: allure generate ./allure-results -o ./allure-report --clean
-
-      - name: 上传Allure报告产物
+      - name: 上传allure原始结果包
         uses: actions/upload-artifact@v4
         with:
-          name: allure-test-report
-          path: allure-report
+          name: allure-raw-results
+          path: allure-results
           retention-days: 7
