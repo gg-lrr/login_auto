@@ -22,15 +22,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 安装Allure命令行
-        uses: simple-elf/allure-report-action@master
-        with:
-          allure_version: 2.24.0
-
       - name: 执行pytest自动化
         run: |
           export PYTHONPATH=$PWD
-          pytest testcases/ --allure-dir=allure-results
+          pytest testcases/ --alluredir=allure-results
 
       - name: 生成Allure报告
         run: allure generate ./allure-results -o ./allure-report --clean
