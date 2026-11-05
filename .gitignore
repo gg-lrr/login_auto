@@ -1,0 +1,15 @@
+# 虚拟环境
+.venv/
+venv/
+
+# allure输出
+allure-results/
+allure-report/
+
+# pycharm
+.idea/
+*.iml
+
+# py缓存
+__pycache__/
+*.pyc
